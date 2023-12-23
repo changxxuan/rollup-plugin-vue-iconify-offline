@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-vue-iconify-offline",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "iconify offline plugin for vue",
   "keywords": [],
   "author": "",
@@ -12,6 +12,8 @@
     "node": ">=18.16.1"
   },
   "scripts": {
+    "dev": "vite",
+    "vite:build": "vue-tsc && vite build",
     "build": "rollup -c",
     "prepare": "husky install",
     "pre-commit": "lint-staged",
@@ -20,7 +22,8 @@
   },
   "peerDependencies": {
     "@iconify/json": "*",
-    "@iconify/vue": "*"
+    "@iconify/vue": "*",
+    "vite": "*"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.7.1",
@@ -37,8 +40,10 @@
     "husky": "^8.0.3",
     "lint-staged": "^14.0.1",
     "rollup": "^3.29.1",
+    "rollup-plugin-node-polyfills": "^0.2.1",
     "tslib": "^2.6.2",
     "typescript": "^5.2.2",
+    "vite": "^4.4.5",
     "vue": "^3.3.4"
   }
 }
