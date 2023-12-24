@@ -114,29 +114,44 @@ function removeMetaData(iconSet: IconifyJSON) {
   }); 
 }
 
-export default function (
-  virtualModuleId: string,
-  sources: IconifyOfflineConfig
-): Plugin {
-  // const virtualModuleId = 'rollup-plugin-vue-iconify-offline';
+function isMainRequest(id: string) {
+  const fileName = id.split('/').pop();
+  return fileName === 'main.ts';
+}
+
+export default function (sources: IconifyOfflineConfig): Plugin {
+  const virtualModuleId = 'virual:rollup-plugin-vue-iconify-offline';
   const resolvedVirtualModuleId = '\0' + virtualModuleId;
   return {
     name: virtualModuleId,
     resolveId(id) {
       if (id === virtualModuleId) {
-        console.log('!!! resolveId !!!', id);
+        // console.log('!!! resolveId !!!', id);
         return resolvedVirtualModuleId;
       }
       return null;
     },
     async load(id) {
       if (id === resolvedVirtualModuleId) {
-        console.log('load: ' + id);
-        // return 'export const msg = "from virtual module"';
+        // console.log('load: ' + id);
         const iconSet = await createBundleTask(sources);
         return iconSet;
       }
       return null;
+    },
+    transform(code, id) {
+      if (isMainRequest(id)) {
+        return {
+          code,
+          map: null
+        };
+        // console.log('transform: ', code, id);
+        // return {
+        //   // code: 'import \'' + resolvedVirtualModuleId + '\';\n\n' + code,
+        //   code: 'console.log("transform add ... ");\n\n' + code,
+        //   map: null
+        // };
+      }
     }
   };
 }

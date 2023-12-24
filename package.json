@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-vue-iconify-offline",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "description": "iconify offline plugin for vue",
   "keywords": [],
   "author": "",
