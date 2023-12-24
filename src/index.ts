@@ -126,14 +126,12 @@ export default function (sources: IconifyOfflineConfig): Plugin {
     name: virtualModuleId,
     resolveId(id) {
       if (id === virtualModuleId) {
-        // console.log('!!! resolveId !!!', id);
         return resolvedVirtualModuleId;
       }
       return null;
     },
     async load(id) {
       if (id === resolvedVirtualModuleId) {
-        // console.log('load: ' + id);
         const iconSet = await createBundleTask(sources);
         return iconSet;
       }
@@ -142,15 +140,9 @@ export default function (sources: IconifyOfflineConfig): Plugin {
     transform(code, id) {
       if (isMainRequest(id)) {
         return {
-          code,
+          code: 'import \'' + virtualModuleId + '\';\n\n' + code,
           map: null
         };
-        // console.log('transform: ', code, id);
-        // return {
-        //   // code: 'import \'' + resolvedVirtualModuleId + '\';\n\n' + code,
-        //   code: 'console.log("transform add ... ");\n\n' + code,
-        //   map: null
-        // };
       }
     }
   };
