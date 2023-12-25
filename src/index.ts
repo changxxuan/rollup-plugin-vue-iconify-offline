@@ -50,14 +50,13 @@ async function createBundleTask(sources: IconifyOfflineConfig) {
         removeMetaData(iconSetData);
         minifyIconSet(iconSetData);
         bundle += 'addCollection(' + JSON.stringify(iconSetData) + ');\n';
-        // iconCount += Object.keys(iconSetData.icons).length;
+        iconCount += Object.keys(iconSetData.icons).length;
       } else {
         throw new Error(`Cannot find required icons in @iconify/json: ${value.reason}`);
       }
     });  
   }
-
-  console.log(`\nkanjian-iconify-offline-plugin work finished! handled ${iconCount} icons, bundle size: ${bundle.length} bytes\n`);
+  // console.log(`\niconify-offline-plugin work finished! handled ${iconCount} icons, bundle size: ${bundle.length} bytes\n`);
   // Save to file
   return bundle;
 }

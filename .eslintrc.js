@@ -20,6 +20,8 @@ module.exports = {
       }
     ],
     'eol-last': ['error', 'always'],
-    'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0 }]
+    'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0 }],
+    '@typescript-eslint/no-unused-vars': 0,
+    'no-unused-vars': 0
   }
 };
