@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-vue-iconify-offline",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "iconify offline plugin for vue",
   "keywords": [],
   "author": "",
@@ -8,9 +8,8 @@
   "main": "./lib/index.cjs",
   "module": "./lib/index.mjs",
   "unpkg": "./lib/index.min.js",
-  "files": [
-    "lib"
-  ],
+  "files": [ "lib" ],
+  "types": "./lib/index.d.ts",
   "engines": {
     "node": ">=18.16.1"
   },
